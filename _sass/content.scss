@@ -15,7 +15,48 @@ body {
     margin-bottom: 313px;
 }
 
+h1,
+h2,
+h3,
+h4 {
+    color: #231815;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2.4rem;
+}
+
+h3 {
+    font-size: 2rem;
+}
+
+h4 {
+    font-size: 1.6rem;
+}
+
+p {
+    font-size: $font-size;
+    line-height: $line-height;
+    letter-spacing: $letter-space;
+    // font-weight: $font-weight;
+}
+
 .container {
-    width: 960px;
+    width: 100%;
     margin: 0 auto;
+    padding: 0 20px;
+}
+
+.content {
+    li {
+        line-height: $line-height;
+        font-size: $font-size;
+        color: $font-color;
+      }
 }
