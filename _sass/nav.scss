@@ -1,0 +1,23 @@
+.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+
+.header-nav {
+    display: block;
+    margin-bottom: 40px;
+    height: 60px;
+    background-color: #dedede;
+    .brand {
+        float: left;
+        display: block;
+        font-size: 1.8rem;
+        padding: 16px 20px;
+    }
+    .header-navlist {
+        float: right;
+        margin-left: 100px;
+    }
+}
