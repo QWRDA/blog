@@ -9,7 +9,7 @@ body {
     font-family: $font-family;
     font-weight: $font-weight;
     font-size: 1.5rem;
-    padding-top: 60px;
+    padding-top: 100px;
     background-color: $bg-color;
     color: $font-color;
     margin-bottom: 313px;
@@ -58,5 +58,9 @@ p {
         line-height: $line-height;
         font-size: $font-size;
         color: $font-color;
-      }
+    }
+    img {
+        width: 100%;
+        // padding: 1px;
+    }
 }

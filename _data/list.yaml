@@ -1,0 +1,9 @@
+nav:
+  - title: 首页
+    link: /
+  - title: 文章
+    link: /post
+  - title: 画廊
+    link: /gallery
+  - title: 关于
+    link: /about
