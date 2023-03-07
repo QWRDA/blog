@@ -1,0 +1,38 @@
+---
+layout: html
+---
+<article class="post-content block max-w-[800px] container py-10 px-c30 mb-10 bg-white">
+    <section class="article-headline border-b pb-4 mb-4 border-slate-300 flex justify-between items-center">
+        <h1 class="block m-0 text-3xl">{{ page.title}}</h1>
+        <div class="headline-feed-icon order-last text-gray-400">
+            <a href="/atom.xml" title="使用Atom订阅" class="text-slate-400 hover:text-orange-400  hover:no-underline">
+                <span class="bi-rss-fill"></span></a>
+        </div>
+    </section>
+    <section class="meta mb-8 text-gray-400 text-sm">
+        <span class="post-date">{{ page.date | date: "%Y-%m-%d" }}</span>
+        {% assign post_tag = page.tags %}
+        {%- for item in post_tag -%}
+        {%- assign lang_tag = item | prepend: "tag-" -%}
+        <a class="inline tags px-2 bg-linkblue hover:text-white hover:no-underline" href="/{{- item -}}/">
+            {{ site.data.t[page.lang][lang_tag] }}
+        </a>
+        {%- endfor %}
+    </section>
+    <section class="blog-content">
+        {{ content }}
+    </section>
+    {%- if page.tag != "announce" -%}
+    <section class="related-post mt-5 border-t border-dotted border-black">
+        {% assign related-post-by-tag = site.posts | where_exp: "item", "item.url != page.url" | where: "tag", page.tag %}
+        <h2>相关文章</h2>
+        <ul>
+            {% for item in related-post-by-tag limit: 5 -%}
+            <li>
+                <a href="{{ item.url }}" {% if item.url == page.url %}class="active" {% endif %}>{{ item.title}}</a>
+            </li>
+            {%- endfor %}
+        </ul>
+    </section>
+    {%- endif -%}
+</article>

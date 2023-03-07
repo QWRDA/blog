@@ -1,0 +1,29 @@
+---
+layout: page
+---
+{{ content }}
+
+{% assign release_product = page.name | remove: ".md" %}
+{%- assign release_note = site.data[release_product] | sort: "date" | reverse -%}
+{%- for item in release_note -%}
+<div class="ver-title mb-2.5 flex items-center">
+    <h2 class="m-0" id="{{ " v" | append: item.ver | slugify }}">
+        {%- if item.product -%}
+        {{ item.product | append: ' API ' | append: item.ver }}
+        {%- else -%}
+        {{ "v" | append: item.ver }}
+        {%- endif -%}
+    </h2>
+    {%- if item.status -%}
+    <div class="ml-2.5 tags text-sm {{ item.status | replace: 'active', 'bg-green-500' | replace: 'offline', 'bg-black' | replace: 'deprecated', 'bg-slate-500' }}">
+        {{ item.status }}
+    </div>
+    {%- endif -%}
+</div>
+<div class="metadata mb-2.5 text-sm text-gray-500">
+    {{ item.date | date: "%Y-%m-%d" }}
+</div>
+<div class="release-content mb-8">
+    {{ item.text | markdownify }}
+</div>
+{%- endfor -%}

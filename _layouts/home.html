@@ -1,0 +1,62 @@
+---
+layout: html
+---
+<div class="homepage container mb-10">
+  <div
+    class="pin-post bg-gradient-to-tr from-[#d9e7eb] via-[#ECF2FF] to-[#FBECDC] py-5 px-2.5 mb-c30 rounded-xl flex flex-wrap">
+    {%- assign pin-post = site.posts | where: "pin", true -%}
+    {%- for item in pin-post limit: 1 -%}
+    <div class="w-full md:w-1/2 lg:w-1/3 mb-5 md:mb-0 px-c15">
+      <img src="{{ item.image }}" alt="{{ item.title }}">
+    </div>
+    <div class="outlook w-full md:w-1/2 lg:w-2/3 px-c15">
+      <span class="tags px-2.5 py-[3px] mb-2.5 bg-[#f78aa5] inline-block">
+        <i class="bi-pin-angle"></i> 置顶文章
+      </span>
+      <h2 class="m-0 mb-4"><a href="{{- item.url -}}">{{ item.title }}</a></h2>
+      <div class="meta mb-4 text-sm">{{ item.date | date: "%Y-%m-%d" }}
+      </div>
+      {%- capture readmore -%}...<a class="text-linkblue hover:underline" href="{{item.url}}">阅读更多</a>{%- endcapture -%}
+      <div class="summary">{{- item.content | strip_html | truncate: 150, readmore | markdownify -}}</div>
+    </div>
+    {%- endfor -%}
+  </div>
+  {% if paginator.page > 1 -%}
+  <div class="pagination font-bold mb-2.5 text-[18px]">
+    第{{ paginator.page }}页
+  </div>
+  {%- endif -%}
+  <div class="all-post flex-grid">
+    {%- for item in paginator.posts %}
+    <div class="w-full md:w-1/2 lg:w-1/3 px-c15">
+      <a class="post-card block bg-white no-underline rounded-xl mb-c30 shadow-md" href="{{- item.url -}}" title="{{ item.title }}">
+        <div class="post-img bg-gradient-to-tr from-[#d9e7eb] via-[#ECF2FF] to-[#FBECDC] bg-[#d9e7eb]">
+          <img class="rounded-tl-xl rounded-tr-xl" src="{{ item.image | default: '/assets/images/preview-post-placeholder.png' }}" alt="{{ item.title }}">
+        </div>
+        <div class="preview p-5">
+          <div class="post-title h-[48px] mb-c5">
+            <h2 class="text-xl m-0">{{ item.title }}</h2>
+          </div>
+          <div class="meta mb-2.5 text-xs">
+            <span class="post-date">{{ item.date | date: "%Y-%m-%d" }}</span>
+            {%- assign tagname = item.tag | prepend: "tag-" -%}
+            <span class="tags bg-linkblue inline-block px-c5 py-1 text-white">
+              {{ site.data.t[page.lang][tagname] }}
+            </span>
+          </div>
+          <div class="summary h-[72px] text-gray-500 ">{{- item.excerpt | strip_html | truncate: 50 -}}</div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="pagination text-center">
+    {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path }}" class="previous text-linkblue">上一页</a>
+    {% endif %}
+    <span class="page_number ">{{ paginator.page }} / {{ paginator.total_pages }}</span>
+    {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path }}" class="next text-linkblue hover:underline">下一页</a>
+    {% endif %}
+  </div>
+</div>

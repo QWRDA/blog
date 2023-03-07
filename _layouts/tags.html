@@ -1,0 +1,11 @@
+---
+layout: page
+---
+{% assign tag_name = page.url | split: '/' | last %}
+{% for item in site.tags[tag_name] %}
+<a href="{{- item.url -}}">
+    <h3 class="mb-2.5">{{ item.title }}</h3>
+</a>
+<span class="mb-2.5 block text-sm text-gray-500">{{ item.date | date: "%Y-%m-%d" }}</span>
+<p class="excerpt block">{{- item.content | strip_html | truncate: 100 -}}</p>
+{% endfor %}

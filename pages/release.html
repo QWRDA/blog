@@ -1,0 +1,26 @@
+---
+title: 发行说明
+layout: html
+description: 浏览和风天气产品和服务的版本更新和发行说明。
+permalink: /release/
+---
+
+<article class="post-content block max-w-[800px] container py-10 px-c30 mb-10 bg-white">
+    <section class="article-headline border-b pb-4 mb-4 border-slate-300 flex justify-between items-center">
+        <h1 class="block m-0 text-3xl">{{ page.title}}</h1>
+    </section>
+    <section class="page-content">
+        <p>浏览和风天气产品和服务的版本更新和发行说明</p>
+        <div class="flex-grid">
+            {%- for item in site.data.list.release -%}
+            <div class="w-full md:w-1/2 px-c15">
+                <a href="{{ item.link }}"
+                    class="block rounded-xl shadow bg-[#ECF2FF] hover:no-underline hover:text-gray-500 text-gray-500  mb-c30 p-5 min-h-[150px]">
+                    <h2 class="m-0 mb-5 text-gray-700">{{ item.name }}</h2>
+                    {{- item.desc -}}
+                </a>
+            </div>
+            {%- endfor -%}
+        </div>
+    </section>
+</article>

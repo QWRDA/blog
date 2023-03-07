@@ -1,39 +1,75 @@
-name: TDOE
-description: TDOE的日常
+name: 和风天气博客
+brand: 和风天气
+description: 和风天气官方博客和新闻站点
 timezone: Asia/Shanghai
-logo: "/assets/images/brand.png"
-attribution: heweather.com
-github: https://github.com/heweather
+url: https://blog.qweather.com
+lang: zh
+logo: https://cdn.qweather.com/media/qw-logo-s-dark-800.png
+attribution: qweather.com
+github: https://github.com/qwd/blog/
+icp:
+  number: 京ICP备15048401号-11
+  url: "https://beian.miit.gov.cn"
+nis:
+  number: 京公网安备11010502042548号
+  url: http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502042548
 webmaster_verifications:
-  google: 5mJlHKIddhky6OQT5qb7M2Uit2yzg4WGwG7JBxWQ6Cw
+  google: WFu5M6w9XiYrf3hgUBLxCA1Jrgb_CWTzXTPycVIqngg
   bing: EDFBFE217D2B905D82BE1D5A1BC9AB28
+  baidu: code-4479XEvxP0
+
+excerpt_separator: <!-- more -->
+paginate: 9
+
+feed:
+  path: atom.xml
+  posts_limit: 20
 
 defaults:
-- scope:
-    path: "pages"
-    type: "pages"
-  values:
-    layout: "html"
-    permalink: "/:basename"
-- scope:
-    path: "_posts"
-    type: "posts"
-  values:
-    layout: "post"
-    permalink: "/post/:slug"
-sass:
-  sass_dir: _sass
-  style: compressed
+  - scope:
+      path: pages
+      type: pages
+    values:
+      layout: page
+      lang: zh
+      seo:
+        type: webpage
+  - scope:
+      path: _posts
+      type: posts
+    values:
+      layout: blog
+      lang: zh
+      is_post: true
+      permalink: "/post/:slug/"
+  - scope:
+      path: _posts/announce
+      type: posts
+    values:
+      layout: blog
+      hidden: true
+      seo: false
+      tag: announce
+      lang: zh
+      permalink: "/announce/:slug/"
+
+postcss:
+  cache: false
 
 exclude:
-- .idea
-- .git
-- .gitignore
-- .sass-cache
-- .jekyll-cache
+- CNAME
 - README.md
+- LICENSE
+- test
+- package-lock.json
+- package.json
+- tailwind.config.js
+- postcss.config.js
 
 plugins:
 - jekyll-seo-tag
 - jekyll-sitemap
 - jekyll-redirect-from
+- jekyll-paginate
+- jekyll-feed
+- jekyll-postcss
