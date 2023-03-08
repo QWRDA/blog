@@ -15,6 +15,13 @@ jobs:
         with:
           node-version: 16
       - run: npm install
-      - uses: jeffreytse/jekyll-deploy-action@v0.4.0
-        with:                                # Some relative inputs of your action
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build site
+        run: |
+          docker run \
+          -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
+          jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && JEKYLL_ENV=production jekyll build"
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
