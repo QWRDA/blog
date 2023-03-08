@@ -15,7 +15,6 @@ jobs:
         with:
           node-version: 16
       - run: npm install
-      - uses: helaili/jekyll-action@2.5.0    # Choose any one of the Jekyll Actions
+      - uses: jeffreytse/jekyll-deploy-action@v0.4.0
         with:                                # Some relative inputs of your action
           token: ${{ secrets.GITHUB_TOKEN }}
-          jekyll_src: './'
