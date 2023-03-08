@@ -18,3 +18,4 @@ jobs:
       - uses: helaili/jekyll-action@2.5.0    # Choose any one of the Jekyll Actions
         with:                                # Some relative inputs of your action
           token: ${{ secrets.GITHUB_TOKEN }}
+          jekyll_src: './'
