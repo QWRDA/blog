@@ -16,11 +16,10 @@ jobs:
           node-version: 16
       - run: npm install
       - name: Build site
-        uses: helaili/jekyll-action@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          jekyll_src: 'blog'
-          build_only: true
+        run: |
+          docker run \
+          -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
+          jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
