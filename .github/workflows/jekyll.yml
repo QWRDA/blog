@@ -56,7 +56,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    steps: Deploy
+    steps: 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
