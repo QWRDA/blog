@@ -2,7 +2,7 @@ name: 和风天气博客
 brand: 和风天气
 description: 和风天气官方博客和新闻站点
 timezone: Asia/Shanghai
-url: https://blog.qweather.com
+baseurl: /blog
 lang: zh
 logo: https://cdn.qweather.com/media/qw-logo-s-dark-800.png
 attribution: qweather.com

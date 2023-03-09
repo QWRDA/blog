@@ -20,8 +20,8 @@
     <meta name="msapplication-config" content="/assets/favicon/browserconfig.xml?{{ site.data.v.favicon }}">
     <meta name="theme-color" content="#1a2226">
     <!-- main style -->
-    <link rel="preload" href="/assets/css/style.css?{{ site.time | date: "%s" }}" as="style" />
-    <link rel="stylesheet" href="/assets/css/style.css?{{ site.time | date: "%s" }}" />
+    <link rel="preload" href="{{ site.baseurl }}/assets/css/style.css?{{ site.time | date: "%s" }}" as="style" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?{{ site.time | date: "%s" }}" />
 </head>
 <body class="bg-bodybg text-gray-700 mb-[454px] md:mb-[322px]">
     {% include nav.html %}
